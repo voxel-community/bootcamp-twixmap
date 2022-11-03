@@ -1,0 +1,6 @@
+- presentazione di openstreetmap e leaflet
+- installa i pacchetti
+- aggiungi a remix root links e scripts (why?)
+- aggiungi la mappa >>> ERRORE
+- come sistemare il problema ESM e cos'è client only
+- aggiungi un form per modificare la posizione della mappa (useState)
