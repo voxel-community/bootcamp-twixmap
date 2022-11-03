@@ -1,6 +1,6 @@
 import type { LinksFunction } from "@remix-run/node";
 import { Form } from "@remix-run/react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import { ClientOnly } from "remix-utils";
 import { Map } from "~/components/map.client";
@@ -13,13 +13,25 @@ export const links: LinksFunction = () => [
 ];
 
 export default function Index() {
-  const [getCenter, setCenter] = useState<[number, number]>([46.069345, 11.125535])
+  const [getCenter, setCenter] = useState<[number, number]>([0, 0])
   
-  function setMapCenter(event: any) {
+  function setCenterFromForm(event: any) {
     const lat = event.currentTarget.lat.value
     const lng = event.currentTarget.lng.value
     setCenter([lat, lng])
   }
+
+  function setCenterFromGeo() {
+    navigator.geolocation.getCurrentPosition((position) => {
+      setCenter([position.coords.latitude, position.coords.longitude]);
+    } , (error) => {
+      // TODO error
+    })
+  }
+
+  useEffect(() => {
+    setCenterFromGeo();
+  }, [])
 
   return (
     <div>
@@ -28,17 +40,20 @@ export default function Index() {
       </ClientOnly>
       <div style={{ position: 'absolute', top: '0', right: '0', padding: '16px', zIndex: '1000' }}>
         <div style={{ backgroundColor: 'white', padding: '16px' }}>
-          <Form onSubmit={setMapCenter}>
+          <Form onSubmit={setCenterFromForm}>
             <div>
-              Latitude <input type="number" name="lat" min="-90" max="90" step="0.000001" defaultValue={getCenter[0]} />
+              Latitude <input type="number" name="lat" min="-90" max="90" step="0.0000001" defaultValue={getCenter[0]} />
             </div>
             <div>
-              Longitute <input type="number" name="lng" min="-180" max="180" step="0.000001" defaultValue={getCenter[1]} />
+              Longitute <input type="number" name="lng" min="-180" max="180" step="0.0000001" defaultValue={getCenter[1]} />
             </div>
             <div>
               <button type="submit">Trova posizione</button>
             </div>
           </Form>
+          <div>
+            <button onClick={() => setCenterFromGeo()}>La mia posizione</button>
+          </div>
         </div>
       </div>
     </div>
