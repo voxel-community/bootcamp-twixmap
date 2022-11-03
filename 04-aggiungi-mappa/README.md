@@ -172,10 +172,10 @@ export default function Index() {
         <div style={{ backgroundColor: 'white', padding: '16px' }}>
           <Form onSubmit={setMapCenter}>
             <div>
-              Latitude <input type="number" name="lat" min="-90" max="90" step="0.000001" defaultValue={getCenter[0]} />
+              Latitude <input type="number" name="lat" min="-90" max="90" step="0.0000001" defaultValue={getCenter[0]} />
             </div>
             <div>
-              Longitude <input type="number" name="lng" min="-180" max="180" step="0.000001" defaultValue={getCenter[1]} />
+              Longitude <input type="number" name="lng" min="-180" max="180" step="0.0000001" defaultValue={getCenter[1]} />
             </div>
             <div>
               <button type="submit">Trova posizione</button>
