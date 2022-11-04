@@ -84,7 +84,7 @@ export function Map({ center, height }: { center: [number, number], height: stri
 }
 ```
 
-Il file di questa mappa nel nome contene la parola `client`: su Remix specificatamente, ma in realtà anche su altre tecnologie, scrivere `client` in un file indica che quel file deve essere solo usato dal browser. Al contrario, la dicitura `server` indica che deve essere utilizzato solo dal server.
+Il file di questa mappa nel nome contiene la parola `client`: su Remix specificatamente, ma in realtà anche su altre tecnologie, scrivere `client` in un file indica che quel file deve essere solo usato dal browser. Al contrario, la dicitura `server` indica che deve essere utilizzato solo dal server.
 
 Questa è una cosa molto pratica perché ci assicura, ad esempio, che informazioni importanti, private o di sicurezza rimangano sul server e che invece componenti grafici che il server non è in grado di capire appaiono solo sul browser. I file `client` sono tipici ogni volta che vengono inserite mappe, grafici o componenti che vanno ad animare e renderizzare qualcosa in particolare.
 
