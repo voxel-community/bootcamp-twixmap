@@ -18,6 +18,12 @@ Per installare tutto quello di cui abbiamo bisogno utilizzeremo NPM, il reposito
 npm install leaflet react-leaflet remix-utils @types/leaflet
 ```
 
+Prima di effettuare il comando sul terminale, dobbiamo interrompere il server che avevamo attivato per vedere l'applicazione sul browser. Quindi clicca sul terminale e premi contemoraneamente `ctrl + C` per arrestare il server. Ora puoi eseguire il comando sopra. Una volta installato tutto, riavvia l'app per vederla sul browser con il comando:
+
+```
+npm run dev
+```
+
 ## Aggiustiamo Remix per le mappe
 
 All'inizio del tutorial abbiamo modificato il file `root.tsx`. Normalmente, questo file non viene modificato molto e la sostituzione che abbiamo fatto era principalmente a scopo educativo. LeafLet avrà bisogno di un foglio di stile importato tramite un link e di alcuni script che verranno caricati in modo automatico, di conseguenza abbiamo bisogno di aggiungere a Remix la gestione dei link e e degli script.
@@ -117,7 +123,7 @@ export default function Index() {
 }
 ```
 
-Sostituisci latitudine e longitudine, che adesso non sono definite e dovrebbero dare un errore nell'editor, con una latitudine e una longitudine a tua scelta.
+Sostituisci latitudine e longitudine, che adesso non sono definite e dovrebbero dare un errore nell'editor, con una latitudine e una longitudine a tua scelta (puoi usare numeri interi, a esempio `11` o `46`, o anche numeri con fino a sette decimali dopo la virgola, a esempio `11.6` o anche `11.1237654`).
 
 Come vedi, c'è un componente speciale chiamato `ClientOnly`. Questo oggetto va a costruire il suo contenuto solo nel momento in cui tutta la pagina ha finito di caricare. 
 
