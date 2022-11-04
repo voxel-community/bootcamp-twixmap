@@ -42,7 +42,7 @@ React Router supporta il **`nested routing`**, che significa che possiamo avere 
 <summary>app/root.tsx</summary>
 
 ```tsx filename=app/root.tsx lines=[1,11]
-import { LiveReload, Outlet } from "remix";
+import { LiveReload, Outlet } from "@remix-run/react";
 
 export default function App() {
   return (
@@ -66,7 +66,7 @@ export default function App() {
 
 💿 Apri il sito e dovresti visualizzare il messaggio che hai inserito:
 
-![Index](/assets/03/hello-world.png)
+![Index](/assets/hello-world.png)
 
 Fantastico! Abbiamo appena creato tutte le principali pagine dell'applicazione.
 
