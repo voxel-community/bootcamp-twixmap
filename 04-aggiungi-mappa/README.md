@@ -117,7 +117,7 @@ export default function Index() {
 }
 ```
 
-Sostituisci latitudine e longitudine, che adesso non sono definite e dovrebbero dare un errore nell'editor, una latitudine e una longitudine a tua scelta.
+Sostituisci latitudine e longitudine, che adesso non sono definite e dovrebbero dare un errore nell'editor, con una latitudine e una longitudine a tua scelta.
 
 Come vedi, c'è un componente speciale chiamato `ClientOnly`. Questo oggetto va a costruire il suo contenuto solo nel momento in cui tutta la pagina ha finito di caricare. 
 
@@ -136,7 +136,7 @@ Utilizzeremo due oggetti avanzati di React (il framework su cui è basato la tec
 
 ### Aggiungiamo il form
 
-Sostiuisci il contenuto dentro il file `index.tsx` con il seguente codice:
+Sostituisci il contenuto dentro il file `index.tsx` con il seguente codice:
 
 ```tsx
 
@@ -238,7 +238,7 @@ export function Map({ center, height }: { center: [number, number], height: stri
 
 ```
 
-Ora, quando cambi i dati di longitudine e latitudine, la mappa si aggiorna spostandoi sulla nuova posizione inserita.
+Ora, quando cambi i dati di longitudine e latitudine, la mappa si aggiorna spostandosi sulla nuova posizione inserita.
 
 | Capitolo precedente  | Capitolo successivo     |
 | :--------------- | ---------------: |
