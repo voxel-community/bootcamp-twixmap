@@ -46,7 +46,7 @@ Parliamo dei file più importanti:
 
 Dalla cartella `twixmap` su Visual Studio Code apriamo un nuovo terminale - clicca `Terminale` nel menu contestuale in alto e poi `Nuovo terminale` dal menu a tendina. 
 
-![Ciao mondo](../assets/02/new-terminal.png)
+![Ciao mondo](../assets/new-terminal.png)
 
 Nel nuovo terminale che abbiamo appena aperto, scrivi il seguente comando e clicca il tasto invio:
 
