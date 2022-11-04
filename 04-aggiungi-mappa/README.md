@@ -12,7 +12,7 @@ Possiamo utilizzare gratuitamente questi dati per costruire la nostra mappa. Il 
 
 ## Installa i pacchetti delle mappe
 
-Per installare tutto quello di cui abbiamo bisogno utilizzeremo NPM il repository ufficiale di tutti i pacchetti javascript. Per installare i pacchetti richiesti, esegui sul terminale il comdando seguente: 
+Per installare tutto quello di cui abbiamo bisogno utilizzeremo NPM, il repository ufficiale di tutti i pacchetti Javascript. Per installare i pacchetti richiesti, esegui sul terminale il comdando seguente: 
 
 ```
 npm install leaflet react-leaflet remix-utils @types/leaflet
