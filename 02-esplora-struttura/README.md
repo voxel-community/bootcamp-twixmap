@@ -113,7 +113,7 @@ npm run dev
 
 Apri [http://localhost:3000](http://localhost:3000) dovresti vedere "ciao mondo":
 
-![Ciao mondo](../assets/02/ciao-mondo.png)
+![Ciao mondo](../assets/ciao-mondo.png)
 
 Ottimo! Ora siamo pronte per iniziare ad aggiungere contenuti.
 
