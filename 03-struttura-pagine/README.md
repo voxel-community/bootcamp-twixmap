@@ -2,7 +2,7 @@
 
 | Capitolo precedente  | Capitolo successivo     |
 | :--------------- | ---------------: |
-| [◀︎ 02-esplora-struttura-progetto](../02-esplora-struttura-progetto)| [04-database ▶︎](../04-database) |
+| [◀︎ 02-esplora-struttura-progetto](../02-esplora-struttura-progetto)| [04-aggiungi-mappa ▶︎](../04-aggiungi-mappa) |
 
 
 Un sito web è formato da pagine. La prima cosa da fare, dunque, è preparare la struttura delle pagine. Questa app ha una struttura non complessa, abbiamo bisogno solo di poche cose:
@@ -72,4 +72,4 @@ Fantastico! Abbiamo appena creato tutte le principali pagine dell'applicazione.
 
 | Capitolo precedente  | Capitolo successivo     |
 | :--------------- | ---------------: |
-| [◀︎ 02-esplora-struttura](../02-esplora-struttura)| [04-database ▶︎](../04-database) |
+| [◀︎ 02-esplora-struttura](../02-esplora-struttura)| [04-aggiungi-mappa ▶︎](../04-aggiungi-mappa) |
