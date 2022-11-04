@@ -7,7 +7,7 @@
 Una volta aperto il progetto, la struttura delle cartelle e dei file dovrebbe essere simile a questa:
 
 ```
-twixel
+twimap
 ├── README.md
 ├── app
 │   ├── entry.client.tsx
@@ -26,7 +26,7 @@ twixel
 
 Parliamo dei file più importanti:
 
-- `app/` - Questa cartella contiene tutto il codice dell'app. Vedrai spesso il termine Remix, è il framework che stiamo utilizzando per realizzare Twixel
+- `app/` - Questa cartella contiene tutto il codice dell'app. Vedrai spesso il termine Remix, è il framework che stiamo utilizzando per realizzare Twimap
 - `app/entry.client.tsx` - Questo è il primo codice che verrà eseguito una volta aperto il sito sul browser. In questo file, Remix chiama una funzione di React chiamata "[hydrate](https://reactjs.org/docs/react-dom.html#hydrate)", che serve a "renderizzare" e sincronizzare i dati tra il browser (client) e il server (sito) che ospita il nostro sito.
 - `app/entry.server.tsx` - Questo invece è il primo codice che viene eseguito quando un richiesta arriva dal browser al nostro server, Remix carica tutti i dati necessari e invia una risposta al browser.
 - `app/root.tsx` - Qui metteremo la "root", ovvero il file principale, la radice, del nostro sito. Questo conterrà l'elemento "<[html](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/html)>".
@@ -44,7 +44,7 @@ Parliamo dei file più importanti:
 
 💿 Proviamo a eseguire una **build** nel nostro terminale. **Con "build" intendiamo la versione "costruita" dell'app.** Dentro Remix ci sono appositi comandi con cui a trasformare il nostro codice che stiamo sviluppando in codice che il server sarà in grado di eseguire. 
 
-Dalla cartella `twixel` su Visual Studio Code apriamo un nuovo terminale - clicca `Terminale` nel menu contestuale in alto e poi `Nuovo terminale` dal menu a tendina. 
+Dalla cartella `twimap` su Visual Studio Code apriamo un nuovo terminale - clicca `Terminale` nel menu contestuale in alto e poi `Nuovo terminale` dal menu a tendina. 
 
 ![Ciao mondo](../assets/02/new-terminal.png)
 
