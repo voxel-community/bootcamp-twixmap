@@ -17,12 +17,12 @@ Alla fine del bootcamp, assieme alle altre Voxel Coders e con il supporto delle 
 
 ### Indice dei capitoli
 
-0. Setup iniziale
-1. Genera un nuovo progetto di Remix
-2. Esplora la struttura del progetto di Remix
-3. Creiamo la struttura delle pagine
-4. Database e dataset pubblici con geohash
-5. Ricerca delle sorgenti vicine con geohash
-6. Rilevamento automatico della posizione GPS
-7. Mappa per visualizzare le sorgenti vicine
-8. Soluzione completa
+0. [Setup iniziale](00-setup)
+1. [Genera un nuovo progetto di Remix](01-genera-progetto/README.md)
+2. [Esplora la struttura del progetto di Remix](02-esplora-struttura/README.md)
+3. [Creiamo la struttura delle pagine](03-struttura-pagine/README.md)
+4. [Aggiungi la mappa](04-aggiungi-mappa/README.md)
+5. [Rilevamento automatico della posizione GPS](05-gps-automatico/README.md)
+6. Ricerca delle sorgenti vicine con geohash
+8. Mappa per visualizzare le sorgenti vicine
+9. [Soluzione completa](twixmap)
