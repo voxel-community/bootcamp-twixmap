@@ -20,7 +20,7 @@ npm install leaflet react-leaflet remix-utils @types/leaflet
 
 ## Aggiustiamo Remix per le mappe
 
-All'inizio del tutorial abbiamo modificato il file `root.tsx`. Normalmente, questo file non viene modificato molto e la sostiutuzione che abbiamo fatto era principalmente a scopo educativo. LeafLet avrà bisogno di un foglio di stile importato tramite un link e di alcuni script che verranno caricati in modo automatico, di conseguenza abbiamo bisogno di aggiungere a Remix la gestione dei link e e degli script.
+All'inizio del tutorial abbiamo modificato il file `root.tsx`. Normalmente, questo file non viene modificato molto e la sostituzione che abbiamo fatto era principalmente a scopo educativo. LeafLet avrà bisogno di un foglio di stile importato tramite un link e di alcuni script che verranno caricati in modo automatico, di conseguenza abbiamo bisogno di aggiungere a Remix la gestione dei link e e degli script.
 
 Sostituisci il contenuto del file `root.tsx` con il seguente codice:
 
