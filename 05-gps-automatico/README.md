@@ -6,13 +6,13 @@
 
 ## Cosa sono le WebAPI
 
-Siamo sempre stati abituati ad avere le applicazioni sui nostri dispositivi Android e iOS con le più svariate funzioni: il GPS per utilizzare il navigatore, l'NFC per pagamenti rapidi e sicuri senza portarsi dietro il portafoglio, il bluetooth per condividere file e ascoltare musica sia con altri che con dispositivi (tipo le casse bluetooth), per non parlare infine delle funzioni di registrazione video e audio.
+Siamo sempre state abituate ad avere le applicazioni sui nostri dispositivi Android e iOS con le più svariate funzioni: il GPS per utilizzare il navigatore, l'NFC per pagamenti rapidi e sicuri senza portarsi dietro il portafoglio, il bluetooth per condividere file e ascoltare musica sia con altri che con dispositivi (tipo le casse bluetooth), per non parlare infine delle funzioni di registrazione video e audio.
 
-Solo di recente sono state messe a disposizione anche sui browser tutte queste funzioni attraverso le WebAPi, dei comandi specifici che possono essere usati sui browser per attivare le funzioni che abbiamo visto senza essere delle app native.
+Solo di recente sono state messe a disposizione anche sui browser tutte queste funzioni attraverso le WebAPI, dei comandi specifici che possono essere usati sui browser per attivare le funzioni che abbiamo visto senza essere delle app native.
 
 Nell'industria software il termine WebAPI è usato in due contesti: 
 - per identificare le **WebAPI** ufficiali dei browser, tutte le funzioni descritte poco fa usate per potenziare l'utilizzo del proprio browser,
-- in senso generico, per descrivere una qualunque funzione di un server per accedere a dati e informazioni utilizzando protoccoli tipici di Internet tipo HTTPS (**web API**)
+- in senso generico, per descrivere una qualunque funzione di un server per accedere a dati e informazioni utilizzando protocolli tipici di Internet tipo HTTPS (**web API**)
 
 Ad esempio, la tua app preferita di delivery probabilmente utilizza le **WebAPI** del browser per identificare la tua posizione GPS (sviluppate dai team di Chrome, Edge, Firefox) e poi delle **web API** specifiche sviluppate dal team dell'app di delivery per creare il tuo ordine o farti visualizzare lo stato della consegna.
 
@@ -20,7 +20,7 @@ Ad esempio, la tua app preferita di delivery probabilmente utilizza le **WebAPI*
 
 Aggiungiamo ora alla nostra app un bottone che permette di trovare immediatamente la posizione esatta dell'utente che utilizza il sistema.
 
-Per farlo, ci vengono in aiuto le WebAPI di geolocalizzazione con cui di chiedere al browser diverse informazioni, tra cui la latitudine e longitudine dell'utente. Ogni volta che verranno utilizzate queste WebAPI il browser mostrerà all'utente di autorizzazione per utilizzare la geolocalizzazione del computer.
+Per farlo, ci vengono in aiuto le WebAPI di geolocalizzazione con cui possiamo chiedere al browser diverse informazioni, tra cui la latitudine e longitudine dell'utente. Ogni volta che verranno utilizzate queste WebAPI il browser richiederà all'utente l'autorizzazione per utilizzare la geolocalizzazione del computer.
 
 ### Rilevamento manuale della posizione
 
