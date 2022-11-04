@@ -2,7 +2,7 @@
 
 | Capitolo precedente  |
 | :--------------- |
-| [◀︎ 04-aggiungi-mappa](../03-aggiungi-mappa)|
+| [◀︎ 04-aggiungi-mappa](../04-aggiungi-mappa)|
 
 ## Cosa sono le WebAPI
 
@@ -126,4 +126,4 @@ Adesso, al primo caricamento l'app passa dallo stato zero alla nostra posizione 
 
 | Capitolo precedente  |
 | :--------------- |
-| [◀︎ 04-aggiungi-mappa](../03-aggiungi-mappa)|
+| [◀︎ 04-aggiungi-mappa](../04-aggiungi-mappa)|
