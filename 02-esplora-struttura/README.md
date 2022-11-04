@@ -42,7 +42,7 @@ Parliamo dei file più importanti:
 
 ## Facciamo partire l'app
 
-💿 Proviamo a eseguire una **build** nel nostro terminale. **Con "build" intendiamo la versione "costruita" dell'app.** Dentro Remix ci sono appositi comandi con cui a trasformare il nostro codice che stiamo sviluppando in codice che il server sarà in grado di eseguire. 
+💿 Proviamo a eseguire una **build** nel nostro terminale. **Con "build" intendiamo la versione "costruita" dell'app.** Dentro Remix ci sono appositi comandi con cui trasformare il nostro codice che stiamo sviluppando in codice che il server sarà in grado di eseguire. 
 
 Dalla cartella `twixmap` su Visual Studio Code apriamo un nuovo terminale - clicca `Terminale` nel menu contestuale in alto e poi `Nuovo terminale` dal menu a tendina. 
 
