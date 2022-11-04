@@ -75,7 +75,7 @@ Stiamo cercando di ridurre il codice generato al minimo inizialmente per poi and
 💿 Rimpiazza i contenuti di `app/root.tsx` con questo:
 
 ```tsx filename=app/root.tsx
-import { LiveReload } from "remix";
+import { LiveReload } from "@remix-run/react";
 
 export default function App() {
   return (
