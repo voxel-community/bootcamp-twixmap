@@ -36,7 +36,7 @@ export default function Index() {
   return (
     <div>
       <ClientOnly>
-        {() => <Map center={getCenter} height="98vh" />}
+        {() => <Map center={getCenter} height="98vh" points={[{name:"BUC", position:[46.0599146, 11.1149482]}]} />}
       </ClientOnly>
       <div style={{ position: 'absolute', top: '0', right: '0', padding: '16px', zIndex: '1000' }}>
         <div style={{ backgroundColor: 'white', padding: '16px' }}>

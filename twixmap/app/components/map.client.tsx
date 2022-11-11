@@ -1,8 +1,8 @@
 import { useEffect } from "react";
-import { MapContainer, TileLayer, Marker, useMap } from "react-leaflet";
+import { MapContainer, TileLayer, Marker, useMap, Popup } from "react-leaflet";
 
-export function Map({ center, height }: { center: [number, number], height: string }) {
-  
+export function Map({ center, height, points }: { center: [number, number], height: string, points: { name: string, position: [number, number] }[] }) {
+
   function UpdateMapCenter() {
     const map = useMap()
     useEffect(() => {
@@ -10,7 +10,21 @@ export function Map({ center, height }: { center: [number, number], height: stri
     }, [center]);
     return null;
   }
-  
+
+  function MultipleMarkers() {
+    return <>{
+      points.map((p, index) => {
+        return (
+          <Marker key={index} position={p.position}>
+            <Popup>
+              {p.name}
+            </Popup>
+          </Marker>
+        )
+      })
+    }</>
+  }
+
   return (
     <div style={{ height }}>
       <MapContainer
@@ -25,6 +39,7 @@ export function Map({ center, height }: { center: [number, number], height: stri
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
         <Marker position={center} />
+        <MultipleMarkers />
       </MapContainer>
     </div>
   );

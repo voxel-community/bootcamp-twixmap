@@ -1,7 +1,12 @@
 [
     {
-        "name": "lolz",
-        "lat": 12.243,
-        "lng": 34.513
+        "name": "BUC - Biblioteca Universitaria Centrale",
+        "lat": 46.0599146,
+        "lng": 11.1149482
+    },
+    {
+        "name": "Stazione FS Trento",
+        "lat": 46.0701811,
+        "lng": 11.1241936
     }
 ]
