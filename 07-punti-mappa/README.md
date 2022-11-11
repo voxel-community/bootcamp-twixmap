@@ -75,7 +75,7 @@ I mentor conoscono questi codici per aggiungere nuovi marcatori perchè hanno ce
 
 Il nostro obiettivo è visualizzare alcuni punti sulla mappa dal database, all'inizio non saranno visualizzati i più vicini ma verranno presi i primi 10 presenti nel database. Non va bene caricare tutti i dati dal database, immagina di avere milioni di punti: causerebbe un improvviso sovraccarico del sistema e moltissimi dati scaricati (addirittura il browser potrebbe bloccarsi).
 
-Per *_caricare_* i dati in un route module di Remix, si usa un [**`loader`**](https://remix.run/docs/en/v1.3.2-pre.0/api/conventions#loader). Il **`loader`** è una funzione `async` che esportiamo e che restituisce una risposta a cui accediamo da dentor il nostro **`HTML`** tramite l'hook [`useLoaderData`](https://remix.run/docs/en/v1.3.2-pre.0/api/remix#useloaderdata).
+Per *_caricare_* i dati in un route module di Remix, si usa un [**`loader`**](https://remix.run/docs/en/v1.3.2-pre.0/api/conventions#loader). Il **`loader`** è una funzione `async` che esportiamo e che restituisce una risposta a cui accediamo da dentro il nostro **`HTML`** tramite l'hook [`useLoaderData`](https://remix.run/docs/en/v1.3.2-pre.0/api/remix#useloaderdata).
 
 In sintesi quindi il `loader` è il codice che viene caricato quando l'utente entra su un sito o preme il tasto di aggiornamento della pagina. Solitamente si collega a un database, legge dei dati e li comunica alla struttura della pagina web. La pagina web utilizza `useLoaderData` per ottenere questi dati e aggiornarsi automaticamente.
 
@@ -277,7 +277,7 @@ export default function Index() {
               Latitude <input type="number" name="lat" min="-90" max="90" step="0.0000001" defaultValue={getCenter[0]} />
             </div>
             <div>
-              Longitute <input type="number" name="lng" min="-180" max="180" step="0.0000001" defaultValue={getCenter[1]} />
+              Longitude <input type="number" name="lng" min="-180" max="180" step="0.0000001" defaultValue={getCenter[1]} />
             </div>
             <div>
               <button type="submit">Trova posizione</button>
