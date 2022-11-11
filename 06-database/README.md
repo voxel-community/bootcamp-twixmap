@@ -2,7 +2,7 @@
 
 | Capitolo precedente  | Capitolo successivo     |
 | :--------------- | ---------------: |
-| [◀︎ 03-struttura-routes](../03-struttura-routes)| [05-mutations ▶︎](../05-mutations) |
+| [◀︎ 05-gps-automatico ](../05-gps-automatico )| [07-punti-mappa ▶︎](../07-punti-mappa) |
 
 ## Setup MongoDB
 
@@ -218,3 +218,7 @@ Ora il tuo database ha dei punti geospaziali caricati! Se torni sul sito di Mong
 ## Focus: il package.json
 
 Il file `package.json` contiene la lista di tutti i pacchetti che hai installato (a esempio `mongodb` poco fa) ma anche delle azioni da far fare quando esegui certi comandi, come `npm run dev`.
+
+| Capitolo precedente  | Capitolo successivo     |
+| :--------------- | ---------------: |
+| [◀︎ 05-gps-automatico ](../05-gps-automatico )| [07-punti-mappa ▶︎](../07-punti-mappa) |

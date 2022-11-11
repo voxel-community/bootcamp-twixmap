@@ -1,8 +1,8 @@
 # Rileva la posizione GPS
 
-| Capitolo precedente  |
-| :--------------- |
-| [◀︎ 04-aggiungi-mappa](../04-aggiungi-mappa)|
+| Capitolo precedente  | Capitolo successivo     |
+| :--------------- | ---------------: |
+| [◀︎ 04-aggiungi-mappa](../04-aggiungi-mappa)| [06-database ▶︎](../06-database) |
 
 ## Cosa sono le WebAPI
 
@@ -130,6 +130,6 @@ useEffect(() => {
 
 Adesso, al primo caricamento l'app passa dallo stato zero alla nostra posizione in automatico.
 
-| Capitolo precedente  |
-| :--------------- |
-| [◀︎ 04-aggiungi-mappa](../04-aggiungi-mappa)|
+| Capitolo precedente  | Capitolo successivo     |
+| :--------------- | ---------------: |
+| [◀︎ 04-aggiungi-mappa](../04-aggiungi-mappa)| [06-database ▶︎](../06-database) |

@@ -1,5 +1,9 @@
 # Visualizza i luoghi più vicini alla tua posizione
 
+| Capitolo precedente  |
+| :--------------- |
+| [◀︎ 07-punti-mappa](../07-punti-mappa)|
+
 Come hai potuto vedere nel video del capitolo precedente GeoHash separa tutto il globo in settori quadrati dove ogni settore è identificato con un hash specifico. Un hash è una stringa di testo composta da vari numeri e lettere e che viene utilizzato in diverse tecnologie, non solo quella geospaziale. 
 
 GeoHash ha una caratteristica particolare che lo rende utile: la parte iniziale di ogni hash è uguale per tutti i settori che sono vicini fra loro. Più la parte iniziale è corta, più il raggruppamento è esteso sul pianeta e quindi grande, mentre più la parte iniziale è lunga il raggruppamento è piu specifico e quindi piccolo. La lunghezza di questa parte iniziale è chiamata precisione.
@@ -137,3 +141,7 @@ Poi aggiungi i due bottoni che chiamano queste funzioni sostituendo il contenuto
 Ora, ricarica la pagina e troverai due bottoni: `Tutti i posti` e `Posti vicini` - cliccando il primo, vedrai tutte le posizioni del database mentre cliccando il secondo vedrai solo le posizioni di Trento.
 
 La funzione `submit()` infatti permette di inviare richieste al server di Remix per richiedere nuovi dati o effettuare delle operazioni. In questo caso, quando chiediamo le posizioni vicine con la funzione `showNearbyPlaces()` stiamo ricaricando la pagina della mappa (con la modalità `get`), aggiungendo due parametri: `lat` e `lng`. Nella funzione con cui visualizziamo tutti i posti `showAllPlaces()`, stiamo richiedendo la pagina senza quei parametri usando una funzione speciale `replace()`.
+
+| Capitolo precedente  |
+| :--------------- |
+| [◀︎ 07-punti-mappa](../07-punti-mappa)|

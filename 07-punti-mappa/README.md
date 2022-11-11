@@ -1,5 +1,9 @@
 # Aggiungi nuovi punti alla mappa
 
+| Capitolo precedente  | Capitolo successivo     |
+| :--------------- | ---------------: |
+| [◀︎ 06-database](../06-database)| [08-ricerca-geohash ▶︎](../08-ricerca-geohash) |
+
 Ora che abbiamo preparato il database iniziamo ad aggiungere i punti sulla mappa. Inizialmente aggiungiamo dei punti sulla mappa con dei dati di prova, per poi collegare effettivamente tutto al nostro database.
 
 ## Aggiorniamo la mappa
@@ -293,3 +297,7 @@ export default function Index() {
 }
 ```
 </details>
+
+| Capitolo precedente  | Capitolo successivo     |
+| :--------------- | ---------------: |
+| [◀︎ 06-database](../06-database)| [08-ricerca-geohash ▶︎](../08-ricerca-geohash) |
