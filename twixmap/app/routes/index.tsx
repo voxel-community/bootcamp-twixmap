@@ -58,8 +58,8 @@ export const loader: LoaderFunction = async ({ request }) => {
 };
 
 export default function Index() {
-  const { points } = useLoaderData<LoaderData>()
   const submit = useSubmit()
+  const { points } = useLoaderData<LoaderData>()
   const markersPoints = points.map(p => {
     return {
       name: p.name,

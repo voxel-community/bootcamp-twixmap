@@ -143,6 +143,16 @@ Ora possiamo iniziare inserendo qualche informazione nel database, in modo da av
         "name": "Stazione FS Trento",
         "lat": 46.0701811,
         "lng": 11.1241936
+    },
+    {
+        "name": "Tour Eiffel",
+        "lat": 48.8583701,
+        "lng": 2.2922926
+    },
+    {
+        "name": "Colosseo",
+        "lat": 41.8902142,
+        "lng": 12.4900422
     }
 ]
 ```
