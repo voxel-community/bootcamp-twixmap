@@ -6,6 +6,8 @@ import { ClientOnly } from "remix-utils";
 import { Map } from "~/components/map.client";
 import { client } from "~/utils/db.server";
 
+import { hash } from 'geokit';
+
 export const links: LinksFunction = () => [
   {
     rel: "stylesheet",
@@ -24,10 +26,18 @@ type LoaderData = {
   points: Point[];
 };
 
-export const loader: LoaderFunction = async () => {
+export const loader: LoaderFunction = async ({ request }) => {
+  
+  let currentHash = ""
+
+  const lat = 43.2341
+  const lng = 11.23123
+  const precision = 5
+  currentHash = hash({ lat:lat, lng: lng }, precision)
+
   const pointsCollection = client.db().collection("points")
   const points: Point[] = [];
-  await pointsCollection.find().limit(10).forEach(doc => {
+  await pointsCollection.find({ hash: { $gte: currentHash } }).limit(10).forEach(doc => {
     points.push({
       name: doc.name,
       lat: doc.lat,
