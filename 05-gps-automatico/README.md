@@ -114,7 +114,7 @@ Solitamente quando apriamo applicazioni di mappe viene visualizzata e fissata la
 
 Infatti il server non conosce le WebAPI del browser ma tutto il codice che si vede nel file `index.tsx` viene eseguito almeno una volta nel server e potrebbe dare problemi. Per essere certi che la funzione GPS venga eseguita solo sul browser possiamo utilizzare la `useEffect()` - una sua caratteristica infatti è che viene invocata unicamente quando l'utente riesce effettivamente a vedere l'applicazione sullo schermo e dunque siamo sicuri che il codice stia venendo eseguito sul browser.
 
-Per utilizzarla, imortala aggiornando l'import all'inizio del file:
+Per utilizzarla, importala aggiornando l'import all'inizio del file:
 
 ```tsx
 import { useEffect, useState } from "react";
