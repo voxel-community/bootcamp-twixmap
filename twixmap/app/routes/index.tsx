@@ -1,5 +1,6 @@
 import type { LinksFunction, LoaderFunction } from "@remix-run/node";
-import { Form, useLoaderData } from "@remix-run/react";
+import { Form, useLoaderData, useSubmit } from "@remix-run/react";
+import { latLng } from "leaflet";
 import { useEffect, useState } from "react";
 
 import { ClientOnly } from "remix-utils";
@@ -24,7 +25,11 @@ type LoaderData = {
   points: Point[];
 };
 
-export const loader: LoaderFunction = async () => {
+export const loader: LoaderFunction = async ({ request }) => {
+  const url = new URL(request.url);
+  const lat = url.searchParams.get("lat") || "";
+  const lng = url.searchParams.get("lng") || "";
+
   const pointsCollection = client.db().collection("points")
   const points: Point[] = [];
   await pointsCollection.find().limit(10).forEach(doc => {
@@ -36,13 +41,14 @@ export const loader: LoaderFunction = async () => {
     })
   })
   const data: LoaderData = {
-    points: points,
+    points: points
   };
   return data;
 };
 
 export default function Index() {
   const { points } = useLoaderData<LoaderData>()
+  const submit = useSubmit()
   const markersPoints = points.map(p => {
     return {
       name: p.name,
@@ -70,6 +76,20 @@ export default function Index() {
     setCenterFromGeo();
   }, [])
 
+  function showNearbyPlaces () {
+    submit(
+      { lat: getCenter[0].toString(), lng: getCenter[1].toString() },
+      {
+        method: "get",
+        action: `/`,
+      }
+    );
+  }
+
+  function showAllPlaces () {
+    submit({}, { replace: true });
+  }
+
   return (
     <div>
       <ClientOnly>
@@ -82,7 +102,7 @@ export default function Index() {
               Latitude <input type="number" name="lat" min="-90" max="90" step="0.0000001" defaultValue={getCenter[0]} />
             </div>
             <div>
-              Longitute <input type="number" name="lng" min="-180" max="180" step="0.0000001" defaultValue={getCenter[1]} />
+              Longitude <input type="number" name="lng" min="-180" max="180" step="0.0000001" defaultValue={getCenter[1]} />
             </div>
             <div>
               <button type="submit">Trova posizione</button>
@@ -90,6 +110,12 @@ export default function Index() {
           </Form>
           <div>
             <button onClick={() => setCenterFromGeo()}>La mia posizione</button>
+          </div>
+          <div>
+            <button onClick={() => showAllPlaces()}>Tutti i posti</button>
+          </div>
+          <div>
+            <button onClick={() => showNearbyPlaces()}>Posti vicini</button>
           </div>
         </div>
       </div>
