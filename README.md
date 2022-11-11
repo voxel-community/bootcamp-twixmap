@@ -26,7 +26,7 @@ Alla fine del bootcamp, assieme alle altre Voxel Coders e con il supporto delle 
 4. [Aggiungi la mappa](04-aggiungi-mappa/README.md)
 5. [Rilevamento automatico della posizione GPS](05-gps-automatico/README.md)
 6. [Database](06-database/README.md)
-7. [Aggiungi nuovi punti alla mappa](07-gps-automatico/README.md)
+7. [Aggiungi nuovi punti alla mappa](07-punti-mappa/README.md)
 8. [Visualizza i luoghi più vicini alla tua posizione](08-ricerca-geohash/README.md)
 9. Mappa per visualizzare le sorgenti vicine
 10. [Soluzione completa](twixmap)
