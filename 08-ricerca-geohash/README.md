@@ -64,7 +64,7 @@ In questo modo, nella funzione `find()` possiamo aggiungere il nostro filtro chi
 
 Puoi vedere lo stesso approccio anche direttamente su Google Maps, dove nell'url puoi sempre trovare la posizione attuale del centro della mappa nei parametri dell'url.
 
-Puoi provare ad aggiungere altri punti sulla mappa ripetendo il passaggio [[[linkkk]]] e provando a sostituire nell'url differenti latitudini e longitudini. Noterai che a volte si presentano gli errori descritti nel video di spiegazione del capitolo precedente.
+Puoi provare ad aggiungere altri punti sulla mappa ripetendo [il passaggio del seed dati](../06-database#carica-tutte-le-sorgenti-dal-dataset-pubblico) e provando a sostituire nell'url differenti latitudini e longitudini. Noterai che a volte si presentano gli errori descritti nel video di spiegazione del capitolo precedente.
 
 ## Aggiungi dei bottoni per visualizzare rapidamente i luoghi vicini o tutti
 
