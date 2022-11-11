@@ -15,3 +15,5 @@ const pointsWithGeohash = pointsSeed.map(point => {
 });
 
 collection.insertMany(pointsWithGeohash)
+
+console.log('Tutti i punti sono stati caricati nel database')

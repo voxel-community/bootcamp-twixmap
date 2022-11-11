@@ -33,30 +33,38 @@ Per salvare i pacchetti, il comando è `npm install nomepacchetto`. I pacchetti 
 Utilizzeremo il Free Shared DB, è gratuito, non è richiesta la carta di credito per iniziare e puoi sfruttare la potenza del database cloud.
 
 1. Vai su <https://account.mongodb.com/account/register?tck=docs_atlas> e crea un account (puoi usare il Sign di Google o creare un account)
-  ![MongoDB](../assets/04/mongodb-login.png)
+  ![MongoDB](../assets/06/mongodb-login.png)
 2. Scegli il `Free Shared` account
-  ![MongoDB](../assets/04/mongodb-free-tier.png)
+  ![MongoDB](../assets/06/mongodb-free-tier.png)
 3. Scegli il cluster geograficamente più vicino a te e crea il cluster.
-  ![MongoDB](../assets/04/mongodb-world-area.png)
+  ![MongoDB](../assets/06/mongodb-world-area.png)
 4. In `Security QuickStart`, crea un autenticazione `Username and Password`. Salva queste informazioni perché ne avremo presto bisogno. Crea un utente ad esempio remix_user con una password sicura.
-  ![MongoDB](../assets/04/mongodb-security-quickstart.png)
+  ![MongoDB](../assets/06/mongodb-security-quickstart.png)
 
 Per l'elenco di accesso IP, inseriremo 0.0.0.0 come IP per garantire che il nostro database sia attivo e funzionante rapidamente per lo sviluppo. Ti consigliamo di limitare gli IP per le app di produzione.
 
-![MongoDB](../assets/04/mongodb-ip.png)
+![MongoDB](../assets/06/mongodb-ip.png)
 
 6. Sarai ridirezionata a `Database Deployments` che mostrerà `Cluster0`.
 7. Clicca il pulsante `Connect` vicino `Cluster 0`
 8. Clicca `Connect your application`
 9. Copia la stringa di connessione fornita.
-10. Nella tua app Remix, cerca il file `.env` nella cartella root, quella principale. Questo è un file di ambiente locale in cui memorizzeremo le informazioni dell'URL Mongo contenente nome utente e password per il tuo database. Aprendo il file `.env` vedrai che Prisma ha già inserito alcune informazioni, tra cui un `DATABASE_URL`.
-11. Aggiorniamo il `DATABASE_URL` in modo che sia il nostro nuovo indirizzo del server.
+10. Nella tua app Remix, crea un file `.env` nella cartella root, quella principale. Questo è un file di ambiente locale in cui memorizzeremo le informazioni dell'URL Mongo contenente nome utente e password per il tuo database. 
+11. Apri il file `.env` e inserisci questa variabile, valorizzandola con la stringa di connessione che hai copiato:.
 
 ```
 DATABASE_URL="mongodb+srv://nomeutente:<password>@twixel.ycwht.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"
 ```
 
-Sostituisci il `nomeutente` con il nome utente che hai creato, la `<password>` con la password creata e `myFirstDatabase` con il nome del database che hai appena creato (`Cluster0`)
+Al posto del `nomeutente` dovrebbe esserci il nome utente che hai creato, al posto di `<password>` la password creata e invece di `myFirstDatabase` il nome del database che hai appena creato (`Cluster0`)
+
+In questo momento, l'ENV non è accessibile alle funzioni presenti negli altri file. Quando proveremo ad accedere al `DATABASE_URL`, avremo degli errori. Per questo, bisogna installare un pacchetto che si chiama `dotenv` che prende in automatico le variabili presenti nel file `.env` e le carica in una funzione `process.env` che eè accessibile a tutta l'app.
+
+Per installarlo, esegui questo comando nel terminale:
+
+```sh
+npm install dotenv --save
+```
 
 <details>
 
@@ -81,7 +89,9 @@ Nota che questo non è un problema solo di Remix ma anche di altri framework. Og
 ```ts filename=app/utils/db.server.ts
 import { MongoClient } from "mongodb";
 
-let db: MongoClient;
+const databaseUrl = process.env.DATABASE_URL || ""
+
+let client: MongoClient;
 
 declare global {
   var __db: MongoClient | undefined;
@@ -91,17 +101,17 @@ declare global {
 // the server with every change, but we want to make sure we don't
 // create a new connection to the DB with every change either.
 if (process.env.NODE_ENV === "production") {
-  db = new MongoClient();
-  db.connect();
+  client = new MongoClient(databaseUrl);
+  client.connect();
 } else {
   if (!global.__db) {
-    global.__db = new MongoClient();
+    global.__db = new MongoClient(databaseUrl);
     global.__db.connect();
   }
-  db = global.__db;
+  client = global.__db;
 }
 
-export { db };
+export { client };
 ```
 
 Ti lasciamo l'analisi di questo codice come esercizio perché, ancora una volta, questo non ha nulla a che fare direttamente con Remix.
@@ -190,10 +200,10 @@ npm install --save-dev esbuild-register
 💿 E ora possiamo eseguire il nostro file `app/utils/seed.server.ts` con quello:
 
 ```sh
-node --require esbuild-register app/utils/seed.server.ts
+node --require dotenv/config --require esbuild-register app/utils/seed.server.ts
 ```
 
-Ora il tuo database ha dei punti geospaziali caricati! Se torni sul sito di MongoDB potrai vedere i tuoi dati online!
+Ora il tuo database ha dei punti geospaziali caricati! Se torni sul sito di MongoDB e clicchi `Broswe Collections` potrai vedere i tuoi dati online sotto la voce `test`/`points`!
 
 ## Focus: il package.json
 
