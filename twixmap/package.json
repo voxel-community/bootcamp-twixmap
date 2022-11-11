@@ -10,6 +10,7 @@
     "@remix-run/react": "^1.7.3",
     "@remix-run/vercel": "^1.7.3",
     "@vercel/node": "^2.4.4",
+    "dotenv": "^16.0.3",
     "geokit": "^1.1.0",
     "leaflet": "^1.9.2",
     "mongodb": "^4.11.0",

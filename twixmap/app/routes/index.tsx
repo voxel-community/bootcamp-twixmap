@@ -1,9 +1,10 @@
-import type { LinksFunction } from "@remix-run/node";
-import { Form } from "@remix-run/react";
+import type { LinksFunction, LoaderFunction } from "@remix-run/node";
+import { Form, useLoaderData } from "@remix-run/react";
 import { useEffect, useState } from "react";
 
 import { ClientOnly } from "remix-utils";
 import { Map } from "~/components/map.client";
+import { client } from "~/utils/db.server";
 
 export const links: LinksFunction = () => [
   {
@@ -12,7 +13,43 @@ export const links: LinksFunction = () => [
   },
 ];
 
+type Point = {
+  name: string,
+  lat: number,
+  lng: number,
+  hash: string
+}
+
+type LoaderData = {
+  points: Point[];
+};
+
+export const loader: LoaderFunction = async () => {
+  const pointsCollection = client.db().collection("points")
+  const points: Point[] = [];
+  await pointsCollection.find().limit(10).forEach(doc => {
+    points.push({
+      name: doc.name,
+      lat: doc.lat,
+      lng: doc.lng,
+      hash: doc.hash
+    })
+  })
+  const data: LoaderData = {
+    points: points,
+  };
+  return data;
+};
+
 export default function Index() {
+  const { points } = useLoaderData<LoaderData>()
+  const markersPoints = points.map(p => {
+    return {
+      name: p.name,
+      position: [p.lat, p.lng] as [number, number]
+    }
+  })
+
   const [getCenter, setCenter] = useState<[number, number]>([0, 0])
   
   function setCenterFromForm(event: any) {
@@ -36,7 +73,7 @@ export default function Index() {
   return (
     <div>
       <ClientOnly>
-        {() => <Map center={getCenter} height="98vh" points={[{name:"BUC", position:[46.0599146, 11.1149482]}]} />}
+        {() => <Map center={getCenter} height="98vh" points={markersPoints} />}
       </ClientOnly>
       <div style={{ position: 'absolute', top: '0', right: '0', padding: '16px', zIndex: '1000' }}>
         <div style={{ backgroundColor: 'white', padding: '16px' }}>
