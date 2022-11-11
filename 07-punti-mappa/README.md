@@ -113,76 +113,183 @@ export default function Users() {
 
 Remix e il file `tsconfig.json` che vengono creati in automatico vengono configurati in modo da permettere di importare tutti i file della cartella `app/` utilizzando la shortcut `~` (lo puoi vedere sopra per l'import delle utils). Questo ti permette di non dover importare i file scrivendo l'intero percorso `../../`.
 
-💿 Aggiorna il file `app/routes/index.tsx` in modo da caricare tutti i punti dal nostro database.
+Il loader che servirà a noi è il seguente. Prenditi del tempo per capire dove posizionare il codice, più in basso c'è la soluzione completa per aiutarti.
 
-<details>
+```tsx
+import type { LinksFunction, LoaderFunction } from "@remix-run/node";
+import { client } from "~/utils/db.server";
 
-<summary>app/routes/twixes.tsx</summary>
+// qui c'è altro codice.
 
-```tsx filename=app/routes/twixes.tsx lines=[1-2,4,11-13,15-20,23,47-51]
-import type { LinksFunction, LoaderFunction } from "remix";
-import { Link, Outlet, useLoaderData } from "remix";
-
-import { db } from "~/utils/db.server";
+type Point = {
+  name: string,
+  lat: number,
+  lng: number,
+  hash: string
+}
 
 type LoaderData = {
-  twixListItems: Array<{ id: string; title: string }>;
+  points: Point[];
 };
 
 export const loader: LoaderFunction = async () => {
+  const pointsCollection = client.db().collection("points")
+  const points: Point[] = [];
+  await pointsCollection.find().limit(10).forEach(doc => {
+    points.push({
+      name: doc.name,
+      lat: doc.lat,
+      lng: doc.lng,
+      hash: doc.hash
+    })
+  })
   const data: LoaderData = {
-    twixListItems: await db.twix.findMany(),
+    points: points,
   };
   return data;
 };
 
-export default function TwixesRoute() {
-  const data = useLoaderData<LoaderData>();
+
+// qui c'è la funzione Index()
+```
+
+Le definizioni di `Point` e `LoaderData` servono a TypeScript per capire in anticipo che formato avranno i dati del database in arrivo. Se avessimo utilizzato JavaScript non sarebbero stati necessari, ma il codice sarebbe diventato meno sicuro e più soggetto a bug (perchè il nostro editor non riesce a trovare errori in anticipo).
+
+La funzione `loader` ora fa alcuni passaggi. Nella prima riga si collega al database in modo esattamente uguale al nostro file `seed.server.ts` quando abbiamo caricato inizialmente i punti. L'operazione `find()` permette di trovare tutti i dati nel database che rispettano una certa regola o filtro, in questo caso vogliamo tutto e quindi non abbiamo definito nessun filtro. L'operazione `limit(10)` serve per indicare che vogliamo solo i primi 10 risultati. Infine la funzione `forEach()` permette di scansionare un documento del database alla volta e di fare varie operazioni, in questo caso aggiungiamo al vettore `points` ogni punto che troviamo.
+
+Nella funzione `Index()` invece aggiungi il seguente codice per collegare alla grafica i dati che arrivano dal server. Anche qui prova a individuare i punti corretti dove inserire questo codice, non è un esercizio semplice e avrai comunque in basso la soluzione completa.
+
+```tsx
+import { Form, useLoaderData } from "@remix-run/react";
+
+// qui c'è altro codice.
+
+export default function Index() {
+  const { points } = useLoaderData<LoaderData>()
+  const markersPoints = points.map(p => {
+    return {
+      name: p.name,
+      position: [p.lat, p.lng] as [number, number]
+    }
+  })
+
+  const [getCenter, setCenter] = useState<[number, number]>([0, 0])
+
+// qui c'è altro codice.
+
+      <ClientOnly>
+        {() => <Map center={getCenter} height="98vh" points={markersPoints} />}
+      </ClientOnly>
+
+// qui c'è altro codice.
+```
+
+La funzione `useLoaderData()` è proprio quella che permette di collegare i dati del database al nostro componente React e quindi alla grafica. Purtroppo la struttura del database non va bene per la nostra mappa e quindi dobbiamo trasformare gli oggetti. Ogni volta che dobbiamo trasformare oggetti utilizziamo la funzione `map()`. Togliamo infine i dati fissi che avevamo messo in precedenza alla mappa e colleghiamo i `markersPoints`.
+
+💿 Ecco la soluzione completa per il file il file `app/routes/index.tsx` in modo da caricare tutti i punti dal nostro database.
+
+<details>
+
+<summary>app/routes/index.tsx</summary>
+
+```tsx filename=app/routes/index.tsx
+import type { LinksFunction, LoaderFunction } from "@remix-run/node";
+import { Form, useLoaderData } from "@remix-run/react";
+import { useEffect, useState } from "react";
+
+import { ClientOnly } from "remix-utils";
+import { Map } from "~/components/map.client";
+import { client } from "~/utils/db.server";
+
+export const links: LinksFunction = () => [
+  {
+    rel: "stylesheet",
+    href: "https://unpkg.com/leaflet@1.9.2/dist/leaflet.css",
+  },
+];
+
+type Point = {
+  name: string,
+  lat: number,
+  lng: number,
+  hash: string
+}
+
+type LoaderData = {
+  points: Point[];
+};
+
+export const loader: LoaderFunction = async () => {
+  const pointsCollection = client.db().collection("points")
+  const points: Point[] = [];
+  await pointsCollection.find().limit(10).forEach(doc => {
+    points.push({
+      name: doc.name,
+      lat: doc.lat,
+      lng: doc.lng,
+      hash: doc.hash
+    })
+  })
+  const data: LoaderData = {
+    points: points,
+  };
+  return data;
+};
+
+export default function Index() {
+  const { points } = useLoaderData<LoaderData>()
+  const markersPoints = points.map(p => {
+    return {
+      name: p.name,
+      position: [p.lat, p.lng] as [number, number]
+    }
+  })
+
+  const [getCenter, setCenter] = useState<[number, number]>([0, 0])
+  
+  function setCenterFromForm(event: any) {
+    const lat = event.currentTarget.lat.value
+    const lng = event.currentTarget.lng.value
+    setCenter([lat, lng])
+  }
+
+  function setCenterFromGeo() {
+    navigator.geolocation.getCurrentPosition((position) => {
+      setCenter([position.coords.latitude, position.coords.longitude]);
+    } , (error) => {
+      // TODO error
+    })
+  }
+
+  useEffect(() => {
+    setCenterFromGeo();
+  }, [])
 
   return (
-    <div className="twixes-layout">
-      <header className="twixes-header">
-        <div className="container">
-          <h1 className="home-link">
-            <Link
-              to="/"
-              title="Remix twixes"
-              aria-label="Remix twixes"
-            >
-              <span className="logo">💬</span>
-              <span className="logo-medium">Twixes</span>
-            </Link>
-          </h1>
-        </div>
-      </header>
-      <main className="twixes-main">
-        <div className="container">
-          <div className="twixes-list">
-            <Link to=".">Get a random twix</Link>
-            <p>Here are a few more twixes to check out:</p>
-            <ul>
-              {data.twixListItems.map((twix) => (
-                <li key={twix.id}>
-                  <Link to={twix.id}>{twix.title}</Link>
-                </li>
-              ))}
-            </ul>
-            <Link to="new" className="button">
-              Add your own
-            </Link>
-          </div>
-          <div className="twixes-outlet">
-            <Outlet />
+    <div>
+      <ClientOnly>
+        {() => <Map center={getCenter} height="98vh" points={markersPoints} />}
+      </ClientOnly>
+      <div style={{ position: 'absolute', top: '0', right: '0', padding: '16px', zIndex: '1000' }}>
+        <div style={{ backgroundColor: 'white', padding: '16px' }}>
+          <Form onSubmit={setCenterFromForm}>
+            <div>
+              Latitude <input type="number" name="lat" min="-90" max="90" step="0.0000001" defaultValue={getCenter[0]} />
+            </div>
+            <div>
+              Longitute <input type="number" name="lng" min="-180" max="180" step="0.0000001" defaultValue={getCenter[1]} />
+            </div>
+            <div>
+              <button type="submit">Trova posizione</button>
+            </div>
+          </Form>
+          <div>
+            <button onClick={() => setCenterFromGeo()}>La mia posizione</button>
           </div>
         </div>
-      </main>
+      </div>
     </div>
   );
 }
 ```
-
 </details>
-
-Ora dovresti vedere questo:
-
-![List of twixes](../assets/04/twixes.png)
